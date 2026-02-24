@@ -1,7 +1,6 @@
 import { useCart } from "../context/CartContext";
 
 const CartDrawer = ({ isOpen, onClose }) => {
-  // 1. Context bata naya functions pani tanne
   const { cart, removeFromCart, addToCart, decreaseQuantity } = useCart();
   
   const total = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
@@ -10,10 +9,8 @@ const CartDrawer = ({ isOpen, onClose }) => {
 
   return (
     <div className="fixed inset-0 z-100 flex justify-end">
-      {/* Background Overlay */}
       <div className="absolute inset-0 bg-black/60" onClick={onClose}></div>
       
-      {/* Drawer Content */}
       <div className="relative w-full max-w-md bg-gray-900 h-full shadow-2xl p-6 flex flex-col text-white">
         <div className="flex justify-between items-center border-b border-gray-800 pb-4">
           <h2 className="text-2xl font-bold text-yellow-500">Your Cart</h2>
@@ -37,7 +34,6 @@ const CartDrawer = ({ isOpen, onClose }) => {
                     <p className="text-yellow-500 text-xs font-bold">${item.price}</p>
                   </div>
 
-                  {/* 2. Quantity Controls - Yo item.map bhitra hunaiparxa */}
                   <div className="flex items-center gap-3 mt-2">
                     <button 
                       onClick={() => decreaseQuantity(item.id)} 
