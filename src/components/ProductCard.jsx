@@ -17,7 +17,7 @@ const ProductCard = ({ product }) => {
       </div>
 
       {/* Content Section */}
-      <div className="flex flex-col flex-grow mt-4">
+      <div className="flex flex-col grow mt-4">
         <h3 className="text-lg md:text-xl font-bold line-clamp-1 text-white">{product.name}</h3>
         <p className="text-gray-400 text-xs md:text-sm mb-2">{product.category}</p>
         
