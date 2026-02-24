@@ -4,11 +4,10 @@ import ProductCard from "../components/ProductCard";
 
 const Products = () => {
   const [activeCategory, setActiveCategory] = useState("All");
-  const [searchTerm, setSearchTerm] = useState(""); // 1. Search ko naya state
+  const [searchTerm, setSearchTerm] = useState("");
 
   const categories = ["All", "Luxury", "Sports", "Smart", "Minimalist"];
 
-  // 2. Modified Filter Logic: Category ra Search dubai check garchha
   const filteredItems = productsData.filter((item) => {
     const matchesCategory = activeCategory === "All" || item.category === activeCategory;
     const matchesSearch = item.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
@@ -18,36 +17,37 @@ const Products = () => {
   });
 
   return (
-    <div className="max-w-7xl mx-auto py-10 px-6">
+    <div className="max-w-7xl mx-auto py-6 md:py-10 px-4 md:px-6 text-white">
       
-      {/* 3. Search Bar Section - Full Width */}
-      <div className="mb-10 flex justify-center">
+      {/* 1. Search Bar - Optimized for Mobile Padding */}
+      <div className="mb-8 flex justify-center">
         <div className="relative w-full max-w-xl">
           <input 
             type="text"
-            placeholder="Search by watch name or brand (e.g. Rolex, Apple)..."
-            className="w-full bg-gray-900 border border-gray-800 text-white px-5 py-3 rounded-full focus:outline-none focus:border-gold transition-all"
+            placeholder="Search watches..."
+            className="w-full bg-gray-900 border border-gray-800 text-white px-5 py-3 rounded-full focus:outline-none focus:border-yellow-500 transition-all text-sm md:text-base"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
-          <span className="absolute right-5 top-3 text-gray-500">
-            🔍
-          </span>
+          <span className="absolute right-5 top-3.5 text-gray-500">🔍</span>
         </div>
       </div>
 
-      <div className="flex flex-col md:flex-row gap-10">
-        {/* Sidebar Filters */}
+      <div className="flex flex-col md:flex-row gap-8 md:gap-10">
+        
+        {/* 2. Responsive Filters */}
         <div className="w-full md:w-1/4">
-          <h2 className="text-2xl font-bold mb-6 text-gold italic">Filters</h2>
-          <div className="flex flex-col gap-3">
+          <h2 className="hidden md:block text-2xl font-bold mb-6 text-yellow-500 italic">Filters</h2>
+          
+          {/* Mobile ma Horizontal Scroll, Desktop ma Vertical List */}
+          <div className="flex flex-row md:flex-col gap-2 overflow-x-auto md:overflow-visible pb-4 md:pb-0 scrollbar-hide no-scrollbar">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`text-left px-4 py-2 rounded-md border transition-all ${
+                className={`whitespace-nowrap px-5 py-2 rounded-full md:rounded-md border transition-all text-sm md:text-left ${
                   activeCategory === cat 
-                  ? "bg-gold text-black border-gold font-bold" 
+                  ? "bg-yellow-500 text-black border-yellow-500 font-bold" 
                   : "border-gray-800 hover:border-gray-500 text-gray-400"
                 }`}
               >
@@ -56,28 +56,28 @@ const Products = () => {
             ))}
           </div>
           
-          {/* Clear Search Button (Optional) */}
           {searchTerm && (
             <button 
               onClick={() => setSearchTerm("")}
-              className="mt-5 text-sm text-red-500 hover:underline"
+              className="mt-3 text-xs text-red-500 hover:underline md:block"
             >
               Clear Search
             </button>
           )}
         </div>
 
-        {/* Product Listing */}
+        {/* 3. Product Listing */}
         <div className="w-full md:w-3/4">
-          <div className="flex justify-between items-end mb-8 border-b border-gray-800 pb-4">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-6 border-b border-gray-800 pb-4 gap-2">
             <div>
-              <h1 className="text-3xl font-bold">{activeCategory} Collections</h1>
-              {searchTerm && <p className="text-sm text-gold mt-1">Results for: "{searchTerm}"</p>}
+              <h1 className="text-2xl md:text-3xl font-bold">{activeCategory} Collections</h1>
+              {searchTerm && <p className="text-xs text-yellow-500 mt-1">Results for: "{searchTerm}"</p>}
             </div>
-            <p className="text-gray-500">{filteredItems.length} Products found</p>
+            <p className="text-gray-500 text-sm">{filteredItems.length} Items</p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Grid optimized for all screens */}
+          <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {filteredItems.map((item) => (
               <ProductCard key={item.id} product={item} />
             ))}
@@ -85,9 +85,8 @@ const Products = () => {
 
           {/* Empty State */}
           {filteredItems.length === 0 && (
-            <div className="text-center py-20 bg-gray-900/30 rounded-lg border border-dashed border-gray-700">
-              <p className="text-xl text-gray-500 mb-2">Oops! No watches found.</p>
-              <p className="text-gray-600">Try searching for something else or change the category.</p>
+            <div className="text-center py-16 bg-gray-900/20 rounded-lg border border-dashed border-gray-800">
+              <p className="text-lg text-gray-500">No watches found.</p>
             </div>
           )}
         </div>

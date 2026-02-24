@@ -6,24 +6,36 @@ import CartDrawer from "./CartDrawer";
 const Navbar = () => {
   const { cart } = useCart();
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
 
   return (
     <>
-      <nav className="flex justify-between items-center p-6 bg-black border-b border-gray-800 sticky top-0 z-50">
-        <Link to="/" className="text-2xl font-bold text-yellow-500 tracking-tighter">
+      <nav className="flex justify-between items-center p-5 bg-black border-b border-gray-800 sticky top-0 z-50">
+        {/* Left Side: Hamburger for Mobile */}
+        <div className="md:hidden flex items-center">
+          <button 
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="text-white text-2xl focus:outline-none"
+          >
+            {isMenuOpen ? "✕" : "☰"}
+          </button>
+        </div>
+
+        {/* Logo */}
+        <Link to="/" className="text-xl md:text-2xl font-bold text-yellow-500 tracking-tighter">
           TIME FUSION
         </Link>
 
-        <div className="space-x-8 hidden md:flex text-white">
+        <div className="hidden md:flex space-x-8 text-white">
           <Link to="/" className="hover:text-yellow-500 transition">Home</Link>
           <Link to="/products" className="hover:text-yellow-500 transition">Products</Link>
           <Link to="/about" className="hover:text-yellow-500 transition">About</Link>
           <Link to="/contact" className="hover:text-yellow-500 transition">Contact</Link>
         </div>
 
-        {/* 1. Yaha onClick thapeko chu */}
+        {/* Right Side: Cart Icon */}
         <div 
           className="relative cursor-pointer group flex items-center gap-2 text-white"
           onClick={() => setIsCartOpen(true)}
@@ -40,9 +52,15 @@ const Navbar = () => {
             Cart
           </span>
         </div>
+
+        <div className={`absolute top-full left-0 w-full bg-black border-b border-gray-800 flex flex-col items-center gap-5 py-6 transition-all duration-300 md:hidden ${isMenuOpen ? "block" : "hidden"}`}>
+          <Link to="/" onClick={() => setIsMenuOpen(false)} className="text-white hover:text-yellow-500">Home</Link>
+          <Link to="/products" onClick={() => setIsMenuOpen(false)} className="text-white hover:text-yellow-500">Products</Link>
+          <Link to="/about" onClick={() => setIsMenuOpen(false)} className="text-white hover:text-yellow-500">About</Link>
+          <Link to="/contact" onClick={() => setIsMenuOpen(false)} className="text-white hover:text-yellow-500">Contact</Link>
+        </div>
       </nav>
 
-      {/* 2. CartDrawer lai nav bhanda bahira tara fragments vitra rakheko chu */}
       <CartDrawer 
         isOpen={isCartOpen} 
         onClose={() => setIsCartOpen(false)} 
