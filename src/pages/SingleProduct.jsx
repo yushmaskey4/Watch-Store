@@ -36,7 +36,7 @@ const SingleProduct = () => {
           </p>
           
           <div className="text-4xl font-bold text-white mb-8">
-            ${product.price}
+            Rs. {product.price}
           </div>
 
           <div className="flex gap-4">
