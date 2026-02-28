@@ -14,11 +14,11 @@ const Checkout = () => {
   };
 
   if (cart.length === 0) {
-    return <div className="p-20 text-center text-white text-2xl">Cart is empty!</div>;
+    return <div className="p-20 text-center text-white text-2xl page-transition">Cart is empty!</div>;
   }
 
   return (
-    <div className="max-w-5xl mx-auto py-12 px-6 text-white">
+    <div className="max-w-5xl mx-auto py-12 px-6 text-white page-transition">
       <h1 className="text-3xl font-bold mb-8 text-yellow-500">Checkout</h1>
       
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">

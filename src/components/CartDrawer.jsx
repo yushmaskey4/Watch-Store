@@ -9,7 +9,7 @@ const CartDrawer = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-100 flex justify-end">
+    <div className="fixed inset-0 z-100 flex justify-end page-transition">
       <div className="absolute inset-0 bg-black/60" onClick={onClose}></div>
 
       <div className="relative w-full max-w-md bg-gray-900 h-full shadow-2xl p-6 flex flex-col text-white">
@@ -87,7 +87,7 @@ const CartDrawer = ({ isOpen, onClose }) => {
           <Link
             to="/checkout"
             onClick={onClose}
-            className="block text-center w-full bg-yellow-500 text-black py-3 font-bold rounded hover:bg-white transition-all"
+            className="block text-center w-full bg-yellow-500 text-black page-transition py-3 font-bold rounded hover:bg-white transition-all"
           >
             PROCEED TO CHECKOUT
           </Link>

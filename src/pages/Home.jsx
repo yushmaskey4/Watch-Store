@@ -9,7 +9,7 @@ const Home = () => {
   ];
 
   return (
-    <div>
+    <div className="page-transition">
       <Hero />
       <section className="max-w-7xl mx-auto py-20 px-6">
         <div className="text-center mb-12">

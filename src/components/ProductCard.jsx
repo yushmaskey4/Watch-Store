@@ -5,7 +5,7 @@ const ProductCard = ({ product }) => {
   const { addToCart } = useCart();
 
   return (
-    <div className="bg-gray-900 border border-gray-800 p-3 md:p-4 rounded-lg hover:border-yellow-500 transition-all group flex flex-col h-full">
+    <div className="bg-gray-900 page-transition border border-gray-800 p-3 md:p-4 rounded-lg hover:border-yellow-500 transition-all group flex flex-col h-full">
       
       <div className="w-full h-48 md:h-64 overflow-hidden rounded-md bg-black flex items-center justify-center">
         <img 

@@ -1,6 +1,6 @@
 const Contact = () => {
   return (
-    <div className="min-h-[80vh] py-20 px-6">
+    <div className="min-h-[80vh] py-20 px-6 page-transition">
       <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-12">
         <div>
           <h2 className="text-4xl font-bold mb-6">Get In <span className="text-gold">Touch</span></h2>

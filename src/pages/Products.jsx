@@ -17,7 +17,7 @@ const Products = () => {
   });
 
   return (
-    <div className="max-w-7xl mx-auto py-6 md:py-10 px-4 md:px-6 text-white">
+    <div className="max-w-7xl mx-auto py-6 md:py-10 px-4 md:px-6 text-white page-transition">
       
       {/* 1. Search Bar - Optimized for Mobile Padding */}
       <div className="mb-8 flex justify-center">
