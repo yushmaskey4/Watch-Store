@@ -1,8 +1,12 @@
 import { useParams, Link } from "react-router-dom";
 import { productsData } from "../data/products";
+import { useContext } from 'react';
+import { useCart } from '../context/CartContext';
 
 const SingleProduct = () => {
   const { id } = useParams(); 
+  // Context bata addToCart function tanne
+  const { addToCart } = useCart(); 
   
   const product = productsData.find((item) => item.id === parseInt(id));
 
@@ -40,7 +44,9 @@ const SingleProduct = () => {
           </div>
 
           <div className="flex gap-4">
-            <button className="flex-1 bg-white text-black font-bold py-4 rounded-md hover:bg-gold transition-all">
+            <button 
+            onClick={() => addToCart(product)}
+            className="flex-1 bg-white text-black font-bold py-4 rounded-md hover:bg-gold transition-all">
               ADD TO CART
             </button>
             <button className="px-6 border border-gray-700 rounded-md hover:bg-gray-800">
@@ -58,4 +64,4 @@ const SingleProduct = () => {
   );
 };
 
-export default SingleProduct;
+export default SingleProduct;     
